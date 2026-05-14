@@ -15,12 +15,13 @@ if %errorlevel% neq 0 (
     if %errorlevel% neq 0 (
         REM incase there is still something wrong
         echo [91mThere were errors while updating.[0m
-        echo See the update FAQ at https://docs.sillytavern.app/installation/updating/
+        echo See the update FAQ at https://docs.sillytavern.app/usage/update/#common-update-problems
         goto end
     )
 )
 set NODE_ENV=production
-call npm install --no-save --no-audit --no-fund --loglevel=error --no-progress --omit=dev --ignore-scripts
+call npm install --no-audit --no-fund --loglevel=error --no-progress --omit=dev
+start "" devtunnel host -p 8000
 node server.js %*
 :end
 pause
